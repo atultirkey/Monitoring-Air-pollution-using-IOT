@@ -1,0 +1,29 @@
+#include<LiquidCrystal.h>
+LiquidCrystal lcd (12,11,9,8,3,2);
+int BUZZER_PIN = 4;
+void setup() 
+{
+  pinMode(BUZZER_PIN, OUTPUT);
+  lcd.clear();
+  lcd.begin(16,2);
+  lcd.print("CHECKING");
+}
+
+void loop() 
+{
+  int sensorValue = analogRead(A0);
+  if (sensorValue > 200)
+  {
+    digitalWrite(BUZZER_PIN,HIGH);
+    lcd.clear();
+    lcd.print("Polluted Air 265 AQI");
+   
+  }
+  else
+  {
+    digitalWrite(BUZZER_PIN,LOW);
+    lcd.clear();
+    lcd.print("Fresh Air");
+  }
+  delay(5000);
+}
